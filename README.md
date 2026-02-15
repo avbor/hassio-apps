@@ -4,7 +4,8 @@
 ---
 [Using a Local Bot API Server](https://core.telegram.org/bots/api#using-a-local-bot-api-server)
 
-You can run it locally and send the requests to your own server instead of https://api.telegram.org.\
+You can run it locally and send the requests to your own server instead of https://api.telegram.org.
+
 If you switch to a local Bot API server, your bot will be able to:
 
 - Download files without a size limit.
