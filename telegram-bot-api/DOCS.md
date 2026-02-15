@@ -5,7 +5,7 @@ Run your own instance of the Telegram Bot API server.
 Overview:
 1. [Create Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain `api_id` and `api_hash`.
 2. In Home Assistant, Install, Configure and then Start the app.
-3. In Home Assistant (`2026.2` or later), configure the Telegram bot integration to use the API endpoint (for example, <kbd>http://localhost:8081</kbd>) of the app.
+3. In Home Assistant (`2026.2` or later), configure the Telegram bot integration to use the API endpoint (for example, <kbd>http://96e39688-telegram-bot-api:8081</kbd>) of the app.
 
 You do not need to make any changes to your existing Telegram bot automations or scripts.
 
@@ -20,9 +20,8 @@ Before you begin, you will need to [create your Telegram application](https://co
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Apps</kbd> > <kbd>App store</kbd>.
 2. Click on the <kbd>...</kbd> icon then <kbd>Repositories</kbd>.
 3. In the <kbd>Add</kbd> field, specify this repository's URL `https://github.com/avbor/hassio-apps` and then click <kbd>+ Add</kbd>.
-4. Refresh the page. You should see a new app named <kbd>Home Assistant App: Telegram Bot API</kbd>. Note: If you do not see the app, wait a few moments and refresh the page again.
+4. Refresh the page. You should see a new app named <kbd>Telegram Bot API</kbd>. Note: If you do not see the app, wait a few moments and refresh the page again.
 5. Click on the app then click <kbd>Install</kbd>. Wait a few minutes for it to finish downloading.
-6. Click on <kbd>Start</kbd>.
 
 Once you have successfully installed the app, continue with the configuration below.
 
@@ -34,15 +33,17 @@ Configure the options below and then click <kbd>Save</kbd>. Click <kbd>Restart</
 
 After you have completed your configuration, continue with the Telegram Bot Integration Set-up to configure your Home Assistant Telegram Bot to connect to the app instead of the official Telegram API server (https://api.telegram.org).
 
-### Option: `api_id`
+### General settings:
+
+#### Option: `api_id`
 
 Obtained from https://my.telegram.org/apps.
 
-### Option: `api_hash`
+#### Option: `api_hash`
 
 Obtained from https://my.telegram.org/apps.
 
-### Option: `log_level`
+#### Option: `log_level`
 
 The `log_level` controls the verbosity of the log output.
 Possible values are:
@@ -51,31 +52,33 @@ Possible values are:
   - `3` - Info. Shows HTTP requests.
   - `4` - Debug
 
-### Option: `prx_type`
+### Proxy configuration:
+
+#### Option: `prx_type`
 
 Proxy type, can be one of `mtproto`, `socks5`, `http`.
 
-### Option: `prx_server`
+#### Option: `prx_server`
 
-Proxy server name (FQDN or IP).
+Proxy server name (`FQDN` or `IP`).
 
-### Option: `prx_port`
+#### Option: `prx_port`
 
-Proxy port (i.e. 443, 1080, 8080, etc).
+Proxy port (i.e. `443`, `1080`, `8080`, etc).
 
-### Option: `prx_username`
+#### Option: `prx_username`
 
 Proxy username, used with `socks5`, `http` proxies.
 
-### Option: `prx_password`
+#### Option: `prx_password`
 
 Proxy password, used with `socks5`, `http` proxies.
 
-### Option: `prx_secret`
+#### Option: `prx_secret`
 
 MTProxy secret.
 
-### Configuration Example
+#### Configuration Example
 
 The following is an example yaml configuration.
 You must replace `api_id` and `api_hash` with your own values.
@@ -84,6 +87,11 @@ You must replace `api_id` and `api_hash` with your own values.
 api_id: "12345678"
 api_hash: 1234567890abcdef1234567890abcdef
 log_level: 1
+proxy:
+  prx_type: mtproto
+  prx_server: my.mtproxy.com
+  prx_port: 443
+  prx_secret: ee4b67f8e98220d0ef3f388946b119d8dc73696d706c652d68612e4264
 ```
 
 ## Telegram Bot API Endpoint
@@ -91,7 +99,10 @@ log_level: 1
 Note: You should have already installed, configured and started the app.
 
 The app exposes an endpoint which can be reached using the following URLs:
-- `http://localhost:8081` - Used within Home Assistant.
+- `http://96e39688-telegram-bot-api:8081` - Used within Home Assistant.
+
+Or, if you enable external port in App settings:
+
 - `https://YOUR-HA:8081` - Replace *YOUR-HA* with your Home Assistant hostname.
 
 ## Telegram Bot Integration Configuration
@@ -105,7 +116,7 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd>.
 2. Click on <kbd>Telegram bot</kbd>
 3. Click on the gear icon of the Telegram bot to display the options for the config entry.
-4. In the API endpoint field, specify the endpoint of the app: `http://localhost:8081/bot` and click <kbd>Submit</kbd>.
+4. In the API endpoint field, specify the endpoint of the app: `http://96e39688-telegram-bot-api:8081/bot` and click <kbd>Submit</kbd>.
 
 For more details, please refer to the documentation: https://www.home-assistant.io/integrations/telegram_bot/#configuration
 
