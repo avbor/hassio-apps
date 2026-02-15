@@ -1,0 +1,34 @@
+configuration:
+  api_id:
+    name: API ID
+    description: To get your API ID, please follow instructions at https://core.telegram.org/api/obtaining_api_id.
+  api_hash:
+    name: API Hash
+    description: To get your API hash, please follow instructions at https://core.telegram.org/api/obtaining_api_id.
+  log_level:
+    name: Log Level
+    description: 1 - Error, 2 - Warning, 3 - Info, 4 - Debug. To log HTTP requests, use log level of at least 3.
+  proxy:
+    name: Proxy settings
+    Description: ""
+    fields:
+      prx_type:
+        name: Proxy type
+        description: Proxy type (must be mtproto, socks5 or http)
+      prx_server:
+        name: Proxy server
+        description: Proxy server FQDN or IP.
+      prx_port:
+        name: Proxy port
+        description: Proxy port (i.e. 1080, 443)
+      prx_username:
+        name: Login
+        description: Proxy username (login), for socks5 or http.
+      prx_password:
+        name: Password
+        description: Proxy password, for socks5 or http.
+      prx_secret:
+        name: MTProxy secret
+        description: Secret for MTProxy.
+network:
+  8081/tcp: The Telegram Bot API server port (Not used for Ingress)

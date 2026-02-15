@@ -1,0 +1,31 @@
+name: "Telegram Bot API"
+description: "Self-hosted local instance of the Telegram Bot API server with proxy support"
+image: "ghcr.io/avbor/telegram-bot-api/{arch}"
+version: "9.4"
+slug: "telegram_bot_api"
+init: false
+arch:
+  - amd64
+  - aarch64
+url: "https://github.com/avbor/hassio-apps"
+ports:
+  8081/tcp: null
+startup: system
+map:
+  - media
+options:
+  log_level: 1
+  proxy:
+    prx_type: none
+schema:
+  api_id: str
+  api_hash: password
+  log_level: int(1,4)
+  proxy:
+    prx_type: list(none|mtproto|socks5|http)
+    prx_server: str?
+    prx_port: port?
+    prx_username: str?
+    prx_password: password?
+    prx_secret: password?
+watchdog: tcp://[HOST]:[PORT:8081]
