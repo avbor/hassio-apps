@@ -1,4 +1,4 @@
-# avbor Home Assistant Apps (Addons)
+# avbor's Home Assistant Apps (Addons)
 
 ### Local [Telegram Bot API](https://github.com/tdlib/telegram-bot-api/) Server
 
