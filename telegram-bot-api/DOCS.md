@@ -20,8 +20,10 @@ Before you begin, you will need to [create your Telegram application](https://co
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Apps</kbd> > <kbd>App store</kbd>.
 2. Click on the <kbd>...</kbd> icon then <kbd>Repositories</kbd>.
 3. In the <kbd>Add</kbd> field, specify this repository's URL `https://github.com/avbor/hassio-apps` and then click <kbd>+ Add</kbd>.
-4. Refresh the page. You should see a new app named <kbd>Telegram Bot API</kbd>. Note: If you do not see the app, wait a few moments and refresh the page again.
-5. Click on the app then click <kbd>Install</kbd>. Wait a few minutes for it to finish downloading.
+4. Refresh the page. You should see a new app named <kbd>Telegram Bot API</kbd>.\
+Note: If you do not see the app, wait a few moments and refresh the page again.
+5. Click on the app then click <kbd>Install</kbd>.\
+Wait a few minutes for it to finish downloading.
 
 Once you have successfully installed the app, continue with the configuration below.
 
@@ -109,7 +111,7 @@ The app exposes an endpoint which can be reached using the following URLs:
 - `http://96e39688-telegram-bot-api:8081`\
 Used within Home Assistant (telegram_bot integration for example).
 
-Or, if you enable external port in App settings:
+Or, if you enable external port in app settings:
 
 - `https://YOUR-HA:8081` or `http://homeassistant.local:8081`\
 Replace *YOUR-HA* with your Home Assistant hostname.
@@ -135,12 +137,16 @@ For more details, please refer to the documentation: https://www.home-assistant.
 
 ### Why would I want to use this over the official server `https://api.telegram.org`?
 
-Running your own server has advantages such as larger file size limits for messages and faster response times.
-For more details, please refer to [using a local bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server) in the official documentation.
+Running your own server has advantages such as larger file size limits for messages and faster response times.\
+For more details, please refer to [using a local bot API server](https://core.telegram.org/bots/api#using-a-local-bot-api-server) in the official documentation.\
+This app also be helpful in situations where access to Telegram's infrastructure is limited or blocked.\
+In this case, you need to set up a connection through a proxy server.
 
-### Can I chat with other users on other Telegram bot API servers?
+### Can I chat with other users on other Telegram Bot API servers?
 
-Yes, because all Telegram bot API servers connect to the same set of Telegram MTProto servers.
+Yes, because all Telegram Bot API servers connect to the same set of Telegram MTProto servers.\
+Also, the bot's operation through a local API server is no different from its operation through api.telegram.org.\
+You continue to use all your automations, scripts, and the rest of the things without any changes.
 
 ## Troubleshooting
 
