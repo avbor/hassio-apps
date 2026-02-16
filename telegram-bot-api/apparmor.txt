@@ -12,6 +12,9 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   /init rmix,
 
   # S6-Overlay
+  /etc/s6-overlay/** r,
+  /etc/s6-overlay/s6-rc.d/** r,
+  /usr/lib/s6-overlay/** rmix,
   /bin/** rmix,
   /usr/bin/** rmix,
   /usr/local/bin/** rmix,
@@ -33,9 +36,14 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   /run/s6/** rwk,
   /etc/cont-init.d/** rmix,
   /etc/services.d/** rmix,
+  /etc/s6-linux-init/** rmix,
   /run/{s6,s6-rc*,service}/** rmix,
   /package/** rmix,
   /command/** rmix,
+  /bin/s6-rc rmix,
+  /bin/s6-rc-compile rmix,
+  /bin/s6-svc rmix,
+  /bin/s6-svscan rmix,
 
   # Network
   network inet stream,
