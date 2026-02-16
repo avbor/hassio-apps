@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile 96e39688_telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
+profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
@@ -37,8 +37,7 @@ profile 96e39688_telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   capability setgid,
   capability chown,
   capability dac_override,
-  capability sys_chroot
-  capability dac_override
+  capability sys_chroot,
   
   signal (send, receive) set=(kill,term,int,hup,cont),
   signal (receive) peer=unconfined,
@@ -84,7 +83,7 @@ profile 96e39688_telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
     network inet stream,
     network inet6 stream,
 
-    signal (receive) peer="96e39688_telegram-bot-api",
+    signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
 
     /data/{,**} rw,
     /media/{,**} rw,
