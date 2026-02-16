@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
+profile 96e39688_telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
@@ -84,7 +84,7 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
     network inet stream,
     network inet6 stream,
 
-    signal (receive) peer=telegram-bot-api,
+    signal (receive) peer="96e39688_telegram-bot-api",
 
     /data/{,**} rw,
     /media/{,**} rw,
