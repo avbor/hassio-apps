@@ -1,9 +1,10 @@
 #include <tunables/global>
 
-profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
+profile "{96e39688_telegram-bot-api,local_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
+  capability dac_override,
   capability kill,
   capability net_bind_service,
   capability setuid,
@@ -14,9 +15,7 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
 
   # Network
   network inet stream,
-  network inet dgram,
   network inet6 stream,
-  network inet6 dgram,
 
   # S6-Overlay init system
   /init ix,
@@ -48,8 +47,8 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
   /run.sh rix,
 
   # App data
-  /data/{,**} rw,
-  /media/{,**} rw,
+  /data/** rw,
+  /media/** rw,
 
   # Temporary files
   /tmp/** rwk,
@@ -66,32 +65,30 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
   owner /data/.backup.lock rwk,
   /data/.snapshot/** rw,
 
-  # Deny dangerous writes
-  deny /proc/sys/kernel/** w,
-  deny /sys/firmware/** w,
-  deny /sys/kernel/** w,
-  deny /proc/kcore r,
+  /usr/local/bin/telegram-bot-api cx -> telegram_api_server,
 
-  /usr/local/bin/telegram-bot-api cx -> telegram_server,
-
-  profile telegram_server flags=(attach_disconnected,mediate_deleted) {
+  profile telegram_api_server flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
+
+    /proc/[0-9]*/stat r,
 
     network inet stream,
     network inet6 stream,
 
-    signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
+    signal (receive) peer="{96e39688_telegram-bot-api,local_telegram-bot-api,telegram-bot-api}",
 
-    /data/{,**} rwk,
-    /data/telegram-bot-api/{,**} rwk,
-    /media/{,**} rwk,
+    /data/ r,
+    /data/** rwk,
+    /media/** rw,
     /usr/local/bin/telegram-bot-api r,
     /lib/** rm,
     /usr/lib/** rm,
 
-    owner @{proc}/@{pid}/stat r,
-    
-    /etc/ssl/certs/ca-certificates.crt r,
+    /etc/ssl/openssl.cnf r,
+    /etc/ssl/certs/ r,
+    /etc/ssl/certs/** r,
+    /usr/share/ca-certificates/ r,
+    /usr/share/ca-certificates/** r,
     /etc/resolv.conf r,
     /etc/hosts r,
     /dev/urandom r,
