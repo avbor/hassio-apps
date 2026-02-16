@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted,complain) {
+profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
@@ -74,7 +74,7 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
 
   /usr/local/bin/telegram-bot-api cx -> telegram_server,
 
-  profile telegram_server flags=(attach_disconnected,mediate_deleted,complain) {
+  profile telegram_server flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     network inet stream,
@@ -83,17 +83,13 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
     signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
 
     /data/{,**} rwk,
+    /data/telegram-bot-api/{,**} rwk,
     /media/{,**} rwk,
     /usr/local/bin/telegram-bot-api r,
     /lib/** rm,
     /usr/lib/** rm,
 
-    @{PROC}/self/stat r,
-    @{PROC}/stat r,
-    @{PROC}/uptime r,
-    @{PROC}/loadavg r,
-    @{PROC}/meminfo r,
-    @{PROC}/sys/kernel/hostname r,
+    owner @{proc}/@{pid}/stat r,
     
     /etc/ssl/certs/ca-certificates.crt r,
     /etc/resolv.conf r,
