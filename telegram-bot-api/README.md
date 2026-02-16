@@ -1,7 +1,6 @@
 # Home Assistant App: Telegram Bot API
 
 ![GitHub Release][releases-shield] [![License][license-shield]](LICENSE.md)
-
 ![Supports amd64 Architecture][amd64-shield] ![Supports aarch64 Architecture][aarch64-shield]
 
 ## About
