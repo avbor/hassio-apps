@@ -1,13 +1,13 @@
 name: "Telegram Bot API"
 description: "Self-hosted local instance of the Telegram Bot API server with proxy support"
+url: "https://github.com/avbor/hassio-apps"
 image: "ghcr.io/avbor/telegram-bot-api/{arch}"
-version: "9.4"
-slug: "telegram_bot_api"
-init: false
 arch:
   - amd64
   - aarch64
-url: "https://github.com/avbor/hassio-apps"
+version: "9.4"
+slug: "telegram-bot-api"
+init: false
 ports:
   8081/tcp: null
 startup: system
