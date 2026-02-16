@@ -82,16 +82,24 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
 
     signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
 
-    /data/{,**} rw,
+    /data/{,**} rwk,
     /media/{,**} rw,
-    /usr/local/bin/telegram-bot-api r,
+    /usr/local/bin/telegram-bot-api rm,
     /lib/** rm,
     /usr/lib/** rm,
+
+    @{PROC}/self/stat r,
+    @{PROC}/stat r,
+    @{PROC}/uptime r,
+    @{PROC}/loadavg r,
+    @{PROC}/meminfo r,
     
     /etc/ssl/certs/ca-certificates.crt r,
     /etc/resolv.conf r,
     /etc/hosts r,
     /dev/urandom r,
     /dev/null rw,
+
+    ptrace (trace, read, tracee) peer="@{profile_name}",
   }
 }
