@@ -80,7 +80,9 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
     #include <abstractions/openssl>
 
     network inet stream,
+    network inet dgram,
     network inet6 stream,
+    network inet6 dgram,
 
     signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
 
@@ -94,12 +96,12 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
     /usr/lib/** rm,
     /lib/ld-musl-*.so* rmx,
 
-    @{PROC}/self/stat r,
-    @{PROC}/stat r,
-    @{PROC}/uptime r,
-    @{PROC}/loadavg r,
-    @{PROC}/meminfo r,
-    @{PROC}/sys/kernel/hostname r,
+    /proc/self/stat r,
+    /proc/stat r,
+    /proc/uptime r,
+    /proc/loadavg r,
+    /proc/meminfo r,
+    /proc/sys/kernel/hostname r,
     
     /etc/ssl/certs/ca-certificates.crt r,
     /etc/resolv.conf r,
