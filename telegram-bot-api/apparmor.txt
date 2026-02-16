@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
+profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted,complain) {
   #include <abstractions/base>
 
   # Capabilities
@@ -76,40 +76,22 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
 
   profile telegram_server flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
-    #include <abstractions/nameservice>
-    #include <abstractions/openssl>
 
     network inet stream,
-    network inet dgram,
     network inet6 stream,
-    network inet6 dgram,
 
     signal (receive) peer="{96e39688_telegram-bot-api,telegram-bot-api}",
 
-    /data/{,**} rwk,
-    /media/{,**} rwk,
-    /tmp/{,**} rwk,
-    /dev/shm/{,**} rwk,
-
-    /usr/local/bin/telegram-bot-api rm,
+    /data/{,**} rw,
+    /media/{,**} rw,
+    /usr/local/bin/telegram-bot-api r,
     /lib/** rm,
     /usr/lib/** rm,
-    /lib/ld-musl-*.so* rmx,
-
-    /proc/self/stat r,
-    /proc/stat r,
-    /proc/uptime r,
-    /proc/loadavg r,
-    /proc/meminfo r,
-    /proc/sys/kernel/hostname r,
     
     /etc/ssl/certs/ca-certificates.crt r,
     /etc/resolv.conf r,
     /etc/hosts r,
-    /etc/nsswitch.conf r,
     /dev/urandom r,
     /dev/null rw,
-
-    ptrace (trace, read, tracee) peer="@{profile_name}",
   }
 }
