@@ -9,6 +9,8 @@ version: "9.4"
 slug: "telegram-bot-api"
 apparmor: true
 init: false
+ingress: true
+ingress_port: 8082
 ports:
   8081/tcp: null
   8082/tcp: null
@@ -17,7 +19,7 @@ map:
   - media
 options:
   log_level: 1
-  stat_enabled: false
+  stat_enabled: true
   proxy:
     prx_type: none
 schema:

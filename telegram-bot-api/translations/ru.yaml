@@ -10,7 +10,7 @@ configuration:
     description: 1 - Error, 2 - Warning, 3 - Info, 4 - Debug. Для логирования HTTP запросов используйте как минимум 3й уровень.
   stat_enabled:
     name: Сервер статистики
-    description: Включить HTTP сервер статистики.
+    description: Встроенный HTTP сервер статистики.
   proxy:
     name: Настройки прокси
     Description: ""
@@ -34,5 +34,5 @@ configuration:
         name: MTProxy секрет
         description: Секрет для прокси MTProxy
 network:
-  8081/tcp: Порт сервера Telegram Bot API (Не используется в Ingress-сети)
-  8082/tcp: Порт HTTP сервера статистики (Не используется в Ingress-сети)
+  8081/tcp: Порт сервера Telegram Bot API
+  8082/tcp: Порт HTTP сервера статистики

@@ -5,7 +5,7 @@ Run your own instance of the Telegram Bot API server.
 Overview:
 1. [Create Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain `api_id` and `api_hash`.
 2. In Home Assistant, Install, Configure and then Start the app.
-3. In Home Assistant (`2026.2` or later), configure the Telegram bot integration to use the API endpoint (for example, <kbd>http://96e39688-telegram-bot-api:8081</kbd>) of the app.
+3. In Home Assistant (`2026.2` or later), configure the Telegram bot integration to use the API endpoint of the app (<kbd>http://96e39688-telegram-bot-api:8081</kbd>).
 
 You do not need to make any changes to your existing Telegram bot automations or scripts.
 
@@ -29,9 +29,10 @@ Once you have successfully installed the app, continue with the configuration be
 
 Refer to the [Pre-requisites](#pre-requisites) section if you have not created your Telegram application.
 
-Configure the options below and then click <kbd>Save</kbd>. Click <kbd>Restart</kbd> when prompted.
+Configure the options below and then click <kbd>Save</kbd>.\
+Click <kbd>Restart</kbd> if prompted.
 
-After you have completed your configuration, continue with the Telegram Bot Integration Set-up to configure your Home Assistant Telegram Bot to connect to the app instead of the official Telegram API server (https://api.telegram.org).
+After you have completed your configuration, continue with the Telegram Bot Integration Set-up to configure your Home Assistant Telegram Bot to connect to the local API instead of the official Telegram API server (https://api.telegram.org).
 
 ### General settings:
 
@@ -54,7 +55,8 @@ Possible values are:
 
 #### Option `stat_enabled`
 
-This option allows you to enable the HTTP endpoint to obtain internal server statistics on port `8082/tcp`.
+This option allows you to control the HTTP endpoint to obtain internal server statistics on port `8082/tcp`.\
+Enabled by default and accessible via the ingress network (in Home Assistant web interface).
 
 ### Proxy configuration:
 
@@ -80,7 +82,7 @@ Proxy password, used with `socks5`, `http` proxies.
 
 #### Option: `prx_secret`
 
-MTProxy secret.
+MTProxy secret (also supports secrets with dd... and ee... prefixes).
 
 #### Configuration Example
 
@@ -91,6 +93,7 @@ You must replace `api_id` and `api_hash` with your own values.
 api_id: "12345678"
 api_hash: 1234567890abcdef1234567890abcdef
 log_level: 1
+stat_enabled: true
 proxy:
   prx_type: mtproto
   prx_server: my.mtproxy.com
@@ -103,11 +106,13 @@ proxy:
 Note: You should have already installed, configured and started the app.
 
 The app exposes an endpoint which can be reached using the following URLs:
-- `http://96e39688-telegram-bot-api:8081` - Used within Home Assistant.
+- `http://96e39688-telegram-bot-api:8081`\
+Used within Home Assistant (telegram_bot integration for example).
 
 Or, if you enable external port in App settings:
 
-- `https://YOUR-HA:8081` - Replace *YOUR-HA* with your Home Assistant hostname.
+- `https://YOUR-HA:8081` or `http://homeassistant.local:8081`\
+Replace *YOUR-HA* with your Home Assistant hostname.
 
 ## Telegram Bot Integration Configuration
 
@@ -120,7 +125,9 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd>.
 2. Click on <kbd>Telegram bot</kbd>
 3. Click on the gear icon of the Telegram bot to display the options for the config entry.
-4. In the API endpoint field, specify the endpoint of the app: `http://96e39688-telegram-bot-api:8081/bot` and click <kbd>Submit</kbd>.
+4. In the API endpoint field, specify the endpoint of the app: \
+`http://96e39688-telegram-bot-api:8081/bot`\
+ and click <kbd>Submit</kbd>.
 
 For more details, please refer to the documentation: https://www.home-assistant.io/integrations/telegram_bot/#configuration
 
@@ -169,4 +176,5 @@ To resolve this issue,
 
 Questions? Issues?
 
-Please [open an issue](https://github.com/avbor/hassio-apps/issues).
+Please open an [issue](https://github.com/avbor/hassio-apps/issues),\
+or, ask in [this](https://t.me/simple_ha) Telegram group (primary on Russian).

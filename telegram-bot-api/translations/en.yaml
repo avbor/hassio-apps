@@ -10,7 +10,7 @@ configuration:
     description: 1 - Error, 2 - Warning, 3 - Info, 4 - Debug. To log HTTP requests, use log level of at least 3.
   stat_enabled:
     name: Statistics endpoint
-    description: Enable statistics HTTP endpoint.
+    description: Internal statistics HTTP endpoint.
   proxy:
     name: Proxy settings
     Description: ""
@@ -34,5 +34,5 @@ configuration:
         name: MTProxy secret
         description: Secret for MTProxy.
 network:
-  8081/tcp: The Telegram Bot API server port (Not used for Ingress)
-  8082/tcp: The statistics HTTP endpoint server port (Not used for Ingress)
+  8081/tcp: The Telegram Bot API server port
+  8082/tcp: The statistics HTTP endpoint server port
