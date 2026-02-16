@@ -36,7 +36,7 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
   capability sys_ptrace,
 
   # ptrace
-  ptrace (trace, read, tracee) peer=@{profile_name},
+  ptrace (trace, read, tracee) peer="@{profile_name}",
   ptrace (read, tracee) peer=unconfined,
 
   # Signals
