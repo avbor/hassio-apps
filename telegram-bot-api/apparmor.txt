@@ -2,84 +2,80 @@
 
 profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
-  #include <abstractions/nameservice>
-  #include <abstractions/openssl>
-  #include <abstractions/consoles>
-
-  # S6-OVERLAY V3 CORE
-  /init rmix,
-  /run.sh rmix,
-  /bin/sh rmix,
-  /bin/bash rmix,
-  /usr/bin/bash rmix,
-  
-  # s6
-  /etc/s6-overlay/** rmix,
-  /usr/lib/s6-overlay/** rmix,
-  /etc/s6-linux-init/** rmix,
-  /**/.s6-svscan/** rmix,
-
-  /run/s6/** rmix,
-  /run/s6-rc/** rmix,
-  /run/s6-linux-init/** rmix,
-  /run/s6/basedir/bin/** rmix,
-  /run/s6/basedir/scripts/** rmix,
-  /run/s6-rc/servicedirs/** rmix,
 
   # Capabilities
   capability kill,
+  capability net_bind_service,
   capability setuid,
   capability setgid,
   capability chown,
-  capability dac_override,
-  capability sys_chroot,
-  capability sys_ptrace,
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
 
-  # ptrace
-  ptrace (trace, read, tracee) peer="@{profile_name}",
-  ptrace (read, tracee) peer=unconfined,
-
-  # Signals
-  signal (send, receive) set=(kill,term,int,hup,cont),
-  signal (receive) peer=unconfined,
-  signal (receive) peer="@{profile_name}",
-
-  # Network and System
+  # Network
   network inet stream,
-  network inet6 stream,
   network inet dgram,
+  network inet6 stream,
   network inet6 dgram,
 
-  /bin/** rmix,
-  /usr/bin/** rmix,
-  /usr/local/bin/** rmix,
-  /lib/** rm,
-  /usr/lib/** rm,
-  /usr/lib/bashio/** rmix,
-  
-  /etc/passwd r,
-  /etc/group r,
-  /etc/nsswitch.conf r,
-  /etc/resolv.conf r,
-  /etc/hosts r,
-  /etc/ssl/certs/ca-certificates.crt r,
-  
+  # S6-Overlay init system
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /sbin/** ix,
+  /usr/sbin/** ix,
+  /lib/** ix,
+  /usr/lib/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
   /run/{,**} rwk,
-  /tmp/** rwk,
+
+  # Standard devices
   /dev/tty rw,
   /dev/null rw,
+  /dev/zero rw,
+  /dev/random r,
   /dev/urandom r,
+
+  # Bashio (Home Assistant helper library)
+  /usr/lib/bashio/** ix,
+
+  # Run script
+  /run.sh rix,
 
   # App data
   /data/{,**} rw,
   /media/{,**} rw,
 
+  # Temporary files
+  /tmp/** rwk,
+  /var/tmp/** rwk,
+
+  # System files (read-only)
+  /etc/** r,
+  /proc/** r,
+  /sys/class/** r,
+  /sys/devices/** r,
+
+  # Supervisor communication
+  /run/supervisor.sock rw,
+  owner /data/.backup.lock rwk,
+  /data/.snapshot/** rw,
+
+  # Deny dangerous writes
+  deny /proc/sys/kernel/** w,
+  deny /sys/firmware/** w,
+  deny /sys/kernel/** w,
+  deny /proc/kcore r,
+
   /usr/local/bin/telegram-bot-api cx -> telegram_server,
 
   profile telegram_server flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
-    #include <abstractions/nameservice>
-    #include <abstractions/openssl>
 
     network inet stream,
     network inet6 stream,
