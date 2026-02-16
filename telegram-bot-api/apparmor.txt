@@ -6,44 +6,36 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/openssl>
   #include <abstractions/consoles>
 
-  # Init and shell
+  # S6-Overlay v3
+  /init rmix,
+  /run.sh rmix,
   /bin/sh rmix,
   /bin/bash rmix,
-  /init rmix,
+  /usr/bin/bash rmix,
 
-  # S6-Overlay
+  # s6
   /etc/s6-overlay/** r,
-  /etc/s6-overlay/s6-rc.d/** r,
   /usr/lib/s6-overlay/** rmix,
-  /bin/** rmix,
-  /usr/bin/** rmix,
-  /usr/local/bin/** rmix,
-  /lib/** rm,
-  /usr/lib/** rm,
+  /etc/s6-linux-init/** rmix,
+  /run/s6/** rwk,
+  /run/s6-rc/** rwk,
+  
+  # HA
+  /etc/cont-init.d/** rmix,
+  /etc/services.d/** rmix,
+  /etc/cont-finish.d/** rmix,
+  /package/** rmix,
+  /command/** rmix,
 
-  # Capabilities
+  # Capabilities and Signals
   capability kill,
   capability setuid,
   capability setgid,
   capability chown,
   capability dac_override,
-
-  # Signals
-  signal (send) set=(kill,term,int,hup,cont),
-
-  # S6
-  /etc/s6-linux-init/** r,
-  /run/s6/** rwk,
-  /etc/cont-init.d/** rmix,
-  /etc/services.d/** rmix,
-  /etc/s6-linux-init/** rmix,
-  /run/{s6,s6-rc*,service}/** rmix,
-  /package/** rmix,
-  /command/** rmix,
-  /bin/s6-rc rmix,
-  /bin/s6-rc-compile rmix,
-  /bin/s6-svc rmix,
-  /bin/s6-svscan rmix,
+  
+  signal (send, receive) set=(kill,term,int,hup,cont),
+  signal (receive) peer=unconfined,
 
   # Network
   network inet stream,
@@ -51,19 +43,28 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   network inet dgram,
   network inet6 dgram,
 
-  # System folders and temp
+  # System files and libs
+  /bin/** rmix,
+  /usr/bin/** rmix,
+  /usr/local/bin/** rmix,
+  /lib/** rm,
+  /usr/lib/** rm,
+  /usr/lib/bashio/** rmix,
+  
   /etc/passwd r,
   /etc/group r,
   /etc/nsswitch.conf r,
   /etc/resolv.conf r,
   /etc/hosts r,
+  /etc/ssl/certs/ca-certificates.crt r,
+  
   /run/{,**} rwk,
   /tmp/** rwk,
   /dev/tty rw,
   /dev/null rw,
   /dev/urandom r,
 
-  # App Folders
+  # App data
   /data/{,**} rw,
   /media/{,**} rw,
 
