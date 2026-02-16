@@ -11,6 +11,9 @@ apparmor: true
 init: false
 ingress: true
 ingress_port: 8082
+panel_icon: mdi:send-circle
+panel_title: "Telegram Bot API Statistics"
+panel_admin: true
 ports:
   8081/tcp: null
   8082/tcp: null
