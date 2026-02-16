@@ -4,56 +4,61 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
   #include <abstractions/nameservice>
   #include <abstractions/openssl>
+  #include <abstractions/consoles>
 
-  # Init
-  /init r,
-  /init ix,
+  # Init and shell
+  /bin/sh rmix,
+  /bin/bash rmix,
+  /init rmix,
 
-  # Network permissions
+  # S6-Overlay
+  /bin/** rmix,
+  /usr/bin/** rmix,
+  /usr/local/bin/** rmix,
+  /lib/** rm,
+  /usr/lib/** rm,
+
+  # Capabilities
+  capability kill,
+  capability setuid,
+  capability setgid,
+  capability chown,
+  capability dac_override,
+
+  # Signals
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6
+  /etc/s6-linux-init/** r,
+  /run/s6/** rwk,
+  /etc/cont-init.d/** rmix,
+  /etc/services.d/** rmix,
+  /run/{s6,s6-rc*,service}/** rmix,
+  /package/** rmix,
+  /command/** rmix,
+
+  # Network
   network inet stream,
   network inet6 stream,
   network inet dgram,
   network inet6 dgram,
 
-  # S6-Overlay
-  capability kill,
-  capability setuid,
-  capability setgid,
-  capability chown,
-  signal (send) set=(kill,term,int,hup,cont),
-
-  # Base Home Assistant / S6
-  /bin/** rmix,
-  /usr/bin/** rmix,
-  /usr/local/bin/** rmix,
-  /run/{s6,s6-rc*,service}/** ix,
-  /package/** ix,
-  /command/** ix,
-  /etc/services.d/** rwix,
-  /etc/cont-init.d/** rwix,
-  /etc/cont-finish.d/** rwix,
-  /run/{,**} rwk,
-  /dev/tty rw,
+  # System folders and temp
   /etc/passwd r,
   /etc/group r,
-  /etc/s6-linux-init/** r,
-  /run/s6/** rwk,
-
-  # Libs
-  /lib/** rm,
-  /usr/lib/** rm,
-
-  # Bashio and temp
-  /usr/lib/bashio/** ix,
+  /etc/nsswitch.conf r,
+  /etc/resolv.conf r,
+  /etc/hosts r,
+  /run/{,**} rwk,
   /tmp/** rwk,
+  /dev/tty rw,
+  /dev/null rw,
+  /dev/urandom r,
 
-  # Persistant data
+  # App Folders
   /data/{,**} rw,
-
-  # External folders access
   /media/{,**} rw,
 
-  # Переход в подпрофиль для самого бинарника
   /usr/local/bin/telegram-bot-api cx -> telegram_server,
 
   profile telegram_server flags=(attach_disconnected,mediate_deleted) {
@@ -61,27 +66,19 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/nameservice>
     #include <abstractions/openssl>
 
-    # Network
     network inet stream,
     network inet6 stream,
 
-    # S6 signals
     signal (receive) peer=telegram-bot-api,
-    signal (receive) peer=*_telegram-bot-api,
 
-    # Folders access
     /data/{,**} rw,
     /media/{,**} rw,
-
-    # Binary and libs
     /usr/local/bin/telegram-bot-api r,
     /lib/** rm,
     /usr/lib/** rm,
     
-    # System resources
     /etc/ssl/certs/ca-certificates.crt r,
     /etc/resolv.conf r,
-    /etc/nsswitch.conf r,
     /etc/hosts r,
     /dev/urandom r,
     /dev/null rw,
