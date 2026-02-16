@@ -17,8 +17,12 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   /etc/s6-overlay/** r,
   /usr/lib/s6-overlay/** rmix,
   /etc/s6-linux-init/** rmix,
-  /run/s6/** rwk,
-  /run/s6-rc/** rwk,
+  /run/s6/** rmix,
+  /run/s6-rc/** rmix,
+  /run/s6-linux-init/** rmix,
+  /run/s6/basedir/bin/** rmix,
+  /package/admin/s6-overlay-*/** rmix,
+  /usr/libexec/s6-overlay/** rmix,
   
   # HA
   /etc/cont-init.d/** rmix,
@@ -33,6 +37,8 @@ profile telegram-bot-api flags=(attach_disconnected,mediate_deleted) {
   capability setgid,
   capability chown,
   capability dac_override,
+  capability sys_chroot
+  capability dac_override
   
   signal (send, receive) set=(kill,term,int,hup,cont),
   signal (receive) peer=unconfined,
