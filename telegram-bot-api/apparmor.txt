@@ -74,7 +74,7 @@ profile "{96e39688_telegram-bot-api,telegram-bot-api}" flags=(attach_disconnecte
 
   /usr/local/bin/telegram-bot-api cx -> telegram_server,
 
-  profile telegram_server flags=(attach_disconnected,mediate_deleted) {
+  profile telegram_server flags=(attach_disconnected,mediate_deleted,complain) {
     #include <abstractions/base>
 
     network inet stream,
