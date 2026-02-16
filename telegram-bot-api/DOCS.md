@@ -52,6 +52,10 @@ Possible values are:
   - `3` - Info. Shows HTTP requests.
   - `4` - Debug
 
+#### Option `stat_enabled`
+
+This option allows you to enable the HTTP endpoint to obtain internal server statistics on port `8082/tcp`.
+
 ### Proxy configuration:
 
 #### Option: `prx_type`

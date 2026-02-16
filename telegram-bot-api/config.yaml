@@ -11,17 +11,20 @@ apparmor: true
 init: false
 ports:
   8081/tcp: null
+  8082/tcp: null
 startup: system
 map:
   - media
 options:
   log_level: 1
+  stat_enabled: false
   proxy:
     prx_type: none
 schema:
   api_id: str
   api_hash: password
   log_level: int(1,4)
+  stat_enabled: bool
   proxy:
     prx_type: list(none|mtproto|socks5|http)
     prx_server: str?
