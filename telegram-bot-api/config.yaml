@@ -7,6 +7,7 @@ arch:
   - aarch64
 version: "9.4"
 slug: "telegram-bot-api"
+apparmor: true
 init: false
 ports:
   8081/tcp: null
