@@ -20,7 +20,7 @@ Or, simply click the button below to add it automatically:
 
 ### &#10003; [Telegram Bot API](https://github.com/tdlib/telegram-bot-api/) Server
 
-![GitHub Release][releases-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports aarch64 Architecture][aarch64-shield]
+![GitHub Release][telegram-bot-api-releases-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports aarch64 Architecture][aarch64-shield]
 
 With this app you can send the requests to your own server instead of https://api.telegram.org.
 
@@ -41,7 +41,7 @@ and more.
 
 ---
 
-[releases-shield]: https://img.shields.io/github/release/avbor/hassio-apps.svg
+[telegram-bot-api-releases-shield]: https://img.shields.io/badge/version-v9.4.1-blue.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
