@@ -152,10 +152,17 @@ You continue to use all your automations, scripts, and the rest of the things wi
 
 ### Supervisor errors:
 
-`Failed to save: Unknown error, see supervisor logs`\
+`Failed to save: Unknown error, see supervisor logs`
+
+`Failed to to call /addons/96e39688_telegram_bot_api/options/validate -`
+
+`Timeout on /addons/96e39688_telegram_bot_api/options/validate request`
+
 `WARNING (MainThread) [supervisor.utils.pwned] Can't fetch HIBP data: Timeout`
 
-These errors relate to the [Have I Been Pwned (HIBP)](Have I Been Pwned (HIBP)) service, which is used by HA to check the passwords you use in apps for leaks.\
+...and so on.
+
+These errors relate to the [Have I Been Pwned (HIBP)](https://haveibeenpwned.com/Passwords) service, which is used by HA to check the passwords you use in apps for leaks.\
 If you're having trouble accessing this resource, you may receive these errors.
 
 The workaround is to disable password checking using apps:\
@@ -165,10 +172,11 @@ or directly through the HA OS console.
 
 You can disable password checking by the pwned service using the command:
 
-#### `ha security options --pwned=False`
+**`ha security options --pwned=False`**
 
 
-Check if this feature is enabled:\
+And check if this feature is disabled:
+
 ```
 ha sec info
 ```
