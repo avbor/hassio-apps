@@ -1,6 +1,14 @@
 # Changelog
 
-This changelog is based on release notes at: https://core.telegram.org/bots/api.
+## 9.4.1
+
+App changes:
+
+- Change repository and image names for Docker image.
+- Fixes in documentation.
+- Cosmetic fixes in app config.
+
+Changelog for 9.4 API version is based on release notes at: https://core.telegram.org/bots/api
 
 ## 9.4
 
