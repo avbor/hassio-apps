@@ -128,7 +128,7 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 2. Click on <kbd>Telegram bot</kbd>
 3. Click on the gear icon of the Telegram bot to display the options for the config entry.
 4. In the API endpoint field, specify the endpoint of the app: \
-`http://96e39688-telegram-bot-api:8081/bot`\
+`http://96e39688-telegram-bot-api:8081`\
  and click <kbd>Submit</kbd>.
 
 For more details, please refer to the documentation: https://www.home-assistant.io/integrations/telegram_bot/#configuration
