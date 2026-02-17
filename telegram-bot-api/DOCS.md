@@ -168,7 +168,7 @@ If you're having trouble accessing this resource, you may receive these errors.
 The workaround is to disable password checking using apps:\
 `Terminal & SSH (official)`\
 `Advanced SSH & Web Terminal (community)`\
-or directly through the HA OS console.
+or directly through the `HA OS console`.
 
 You can disable password checking by the pwned service using the command:
 
@@ -182,7 +182,11 @@ ha sec info
 ```
 Result should be: `pwned: false`
 
+There's an issue on GitHub about this:\
+https://github.com/home-assistant/supervisor/issues/6463
 
+Feature description:\
+https://www.home-assistant.io/more-info/pwned-passwords/
 
 
 ### Server error: `Can't parse as an integer string`
