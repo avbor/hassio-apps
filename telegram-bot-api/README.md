@@ -25,7 +25,7 @@ If you switch to a local Bot API server, your bot will be able to:
 
 [Documentation](https://github.com/avbor/hassio-apps/blob/main/telegram-bot-api/DOCS.md)
 
-The app is built using the [avbor/ha-telegram-bot-api](https://github.com/avor/ha-telegram-bot-api) image which uses the [official source](https://github.com/tdlib/telegram-bot-api) and some additions from [Seed680](https://github.com/Seed680/telegram-bot-api) for proxy setup.
+The app is built using the [avbor/ha-telegram-bot-api](https://github.com/avbor/ha-telegram-bot-api) image which uses the [official source](https://github.com/tdlib/telegram-bot-api) and some additions from [Seed680](https://github.com/Seed680/telegram-bot-api) for proxy setup.
 
 [releases-shield]: https://img.shields.io/badge/version-v9.4.1-blue.svg
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
