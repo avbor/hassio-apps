@@ -21,7 +21,7 @@ If you switch to a local Bot API server, your bot will be able to:
 - Set max_webhook_connections up to 100000.
 - Receive the absolute local path as a value of the file_path field without the need to download the file after a getFile request.
 
-**In addition, this application allows you to use proxy server (MTProto, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
+**In addition, this application allows you to use proxy server (MTProxy, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
 
 You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](https://github.com/9seconds/mtg) to overcome the limitations of Telegram infrastructure availability for your bots.
 
@@ -33,3 +33,4 @@ The app is built using the [avbor/ha-telegram-bot-api](https://github.com/avbor/
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+
