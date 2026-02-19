@@ -36,7 +36,7 @@ If you switch to a using a [local Bot API server](https://core.telegram.org/bots
 
 and more.
 
-**In addition, this application allows you to use proxy server (MTProxy, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
+**In addition, this application allows you to use proxy server (MTProto, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
 
 You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](https://github.com/9seconds/mtg) to overcome the limitations of Telegram infrastructure availability for your bots.
 
@@ -50,3 +50,4 @@ You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](h
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
 
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2026.svg
+
