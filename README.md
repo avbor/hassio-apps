@@ -38,6 +38,8 @@ and more.
 
 **In addition, this application allows you to use proxy server (MTProto, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
 
+You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](https://github.com/9seconds/mtg) to overcome the limitations of Telegram infrastructure availability for your bots.
+
 [Documentation](https://github.com/avbor/hassio-apps/blob/main/telegram-bot-api/DOCS.md)
 
 ---

@@ -23,6 +23,8 @@ If you switch to a local Bot API server, your bot will be able to:
 
 **In addition, this application allows you to use proxy server (MTProto, SOCKS5 or HTTP) to connect to the Telegram infrastructure.**
 
+You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](https://github.com/9seconds/mtg) to overcome the limitations of Telegram infrastructure availability for your bots.
+
 [Documentation](https://github.com/avbor/hassio-apps/blob/main/telegram-bot-api/DOCS.md)
 
 The app is built using the [avbor/ha-telegram-bot-api](https://github.com/avbor/ha-telegram-bot-api) image which uses the [official source](https://github.com/tdlib/telegram-bot-api) and some additions from [Seed680](https://github.com/Seed680/telegram-bot-api) for proxy setup.
