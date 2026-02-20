@@ -159,6 +159,36 @@ You continue to use all your automations, scripts, and the rest of the things wi
 
 ## Troubleshooting
 
+### Creating an app on my.telegram.org/apps: `ERROR`
+
+This is a fairly common problem, and everyone has their own solution.\
+Possible solutions include:
+
+#### Data Formatting
+- **App Title and Short Name**: Avoid using the word "Telegram," symbols like @ or #, spaces, or hyphens.\
+  Use only Latin characters and numbers. Short name must be between 5 and 32 characters.
+- **Random Values**: If meaningful names fail, try entering a random string of letters.\
+  You can change these details later; this often helps bypass automated filters.
+- **Platform Selection**: Try changing the platform (e.g., select Android or Desktop instead of "Other").
+
+#### Network and Environment
+- **Disable VPN/Proxy**: Telegram often blocks API registration from IP addresses it deems suspicious or public.
+- **Incognito Mode**: Use your browser's private mode to rule out issues with old cache, cookies, \
+  or extensions (especially ad-blockers).
+- **Change Network**: Switch from Wi-Fi to mobile data (or vice versa) to get a fresh IP address.
+
+#### Account Status
+- **Account Age**: Brand new accounts often face "Error" restrictions.\
+  If your account was created recently, wait a few days before trying again.
+- **Activity & Premium**: The account must be active.\
+  Sometimes having a Telegram Premium subscription helps as it increases the system's trust level.
+
+#### Technical Workarounds
+- **Spam Clicking**: Some users report that clicking the "Create application" button repeatedly \
+  (sometimes up to 10-20 times) eventually forces the request through.
+- **Browser Swap**: If you are using Chrome, try Firefox or Safari.
+
+
 ### Supervisor errors:
 
 `Failed to save: Unknown error, see supervisor logs`
