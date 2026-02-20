@@ -6,7 +6,7 @@ Overview:
 1. [Create Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain `api_id` and `api_hash`.
 2. In Home Assistant, Install, Configure and then Start the app.
 3. In Home Assistant (`2026.2` or later), configure the Telegram bot integration to use the API endpoint of the app:\
-<kbd>http://96e39688-telegram-bot-api:8081</kbd>.
+`http://96e39688-telegram-bot-api:8081`
 
 You do not need to make any changes to your existing Telegram bot automations or scripts.
 
