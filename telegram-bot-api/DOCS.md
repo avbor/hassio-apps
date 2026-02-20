@@ -14,7 +14,8 @@ Note: The app has read-only access to your `media` folder.
 
 ## Pre-requisites
 
-Before you begin, you will need to [create your Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain your `api_id` and `api_hash` which will be required for configuration later.
+Before you begin, you will need to [create your Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain your `api_id` and `api_hash` which will be required for configuration later.\
+If you can't create an app due to an error, refer to the [Troubleshooting](#creating-an-app-on-mytelegramorgapps-error) section.
 
 ## Installation
 
@@ -35,6 +36,7 @@ Refer to the [Pre-requisites](#pre-requisites) section if you have not created y
 Configure the options below and then click <kbd>Save</kbd>.\
 Click <kbd>Restart</kbd> if prompted.
 
+*This configuration requires Home Assistant `2026.2` or later:*\
 After you have completed your configuration, continue with the Telegram Bot Integration Set-up to configure your Home Assistant Telegram Bot to connect to the local API instead of the official Telegram API server (https://api.telegram.org).
 
 This can be done by reconfiguring the Telegram bot integration:
@@ -64,7 +66,7 @@ Possible values are:
   - `3` - Info. Shows HTTP requests.
   - `4` - Debug
 
-#### Option `stat_enabled`
+#### Option: `stat_enabled`
 
 This option allows you to control the HTTP endpoint to obtain internal server statistics on port `8082/tcp`.\
 Enabled by default and accessible via the ingress network (in Home Assistant web interface).
