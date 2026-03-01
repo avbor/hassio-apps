@@ -1,5 +1,24 @@
 # Changelog
 
+## 9.5
+
+Highlighted changes for Telegram Bot API:
+
+- Update TDLib to 1.8.62.
+- Improve error message.
+
+Changelog for 9.5 API version is based on release notes at: <https://core.telegram.org/bots/api>:
+
+- Added the MessageEntity type “date_time”, allowing bots to show a formatted date and time to the user.
+- Allowed all bots to use the method sendMessageDraft.
+- Added the field tag to the classes ChatMemberMember and ChatMemberRestricted.
+- Added the method setChatMemberTag.
+- Added the field can_edit_tag to the classes ChatMemberRestricted and ChatPermissions.
+- Added the field can_manage_tags to the classes ChatMemberAdministrator and ChatAdministratorRights.
+- Added the parameter can_manage_tags to the method promoteChatMember.
+- Added the field sender_tag to the class Message.
+- Added the field iconCustomEmojiId to the class BottomButton.
+
 ## 9.4.1
 
 App changes:
