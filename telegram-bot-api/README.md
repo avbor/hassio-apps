@@ -29,7 +29,7 @@ You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](h
 
 The app is built using the [avbor/ha-telegram-bot-api](https://github.com/avbor/ha-telegram-bot-api) image which uses the [official source](https://github.com/tdlib/telegram-bot-api) and some additions from [Seed680](https://github.com/Seed680/telegram-bot-api) for proxy setup.
 
-[releases-shield]: https://img.shields.io/badge/version-v9.4.1-blue.svg
+[releases-shield]: https://img.shields.io/badge/version-v9.5-blue.svg
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg

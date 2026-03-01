@@ -44,7 +44,7 @@ You can use projects like [telemt](https://github.com/telemt/telemt/) or [mtg](h
 
 ---
 
-[telegram-bot-api-releases-shield]: https://img.shields.io/badge/version-v9.4.1-blue.svg
+[telegram-bot-api-releases-shield]: https://img.shields.io/badge/version-v9.5-blue.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [license-shield]: https://img.shields.io/github/license/avbor/hassio-apps.svg
