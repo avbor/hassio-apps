@@ -51,11 +51,11 @@ This can be done by reconfiguring the Telegram bot integration:
 
 #### Option: `api_id`
 
-Obtained from https://my.telegram.org/apps.
+Obtained from <https://my.telegram.org/apps>.
 
 #### Option: `api_hash`
 
-Obtained from https://my.telegram.org/apps.
+Obtained from <https://my.telegram.org/apps>.
 
 #### Option: `log_level`
 
@@ -73,27 +73,27 @@ Enabled by default and accessible via the ingress network (in Home Assistant web
 
 ### Proxy configuration:
 
-#### Option: `prx_type`
+#### Option: `proxy:` `prx_type`
 
 Proxy type, can be one of `mtproto`, `socks5`, `http`.
 
-#### Option: `prx_server`
+#### Option: `proxy:` `prx_server`
 
 Proxy server name (`FQDN` or `IP`).
 
-#### Option: `prx_port`
+#### Option: `proxy:` `prx_port`
 
 Proxy port (i.e. `443`, `1080`, `8080`, etc).
 
-#### Option: `prx_username`
+#### Option: `proxy:` `prx_username`
 
 Proxy username, used with `socks5`, `http` proxies.
 
-#### Option: `prx_password`
+#### Option: `proxy:` `prx_password`
 
 Proxy password, used with `socks5`, `http` proxies.
 
-#### Option: `prx_secret`
+#### Option: `proxy:` `prx_secret`
 
 MTProxy secret (also supports secrets with dd... and ee... prefixes).
 
@@ -102,7 +102,7 @@ MTProxy secret (also supports secrets with dd... and ee... prefixes).
 The following is an example yaml configuration.
 You must replace `api_id` and `api_hash` with your own values.
 
-```
+```yaml
 api_id: "12345678"
 api_hash: 1234567890abcdef1234567890abcdef
 log_level: 1
@@ -129,7 +129,7 @@ Replace *YOUR-HA* with your Home Assistant hostname or IP address.
 
 ## Telegram Bot Integration Configuration
 
-This section assumes that you have already set-up the Telegram bot integration.
+This section assumes that you have already set-up the Telegram bot integration.\
 If you have not done so, please refer to the [Telegram bot documentation](https://www.home-assistant.io/integrations/telegram_bot).
 
 This configuration requires Home Assistant `2026.2` or later.
@@ -142,7 +142,7 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 `http://96e39688-telegram-bot-api:8081`
 5. Complete the reconfiguration by pressing <kbd>Submit</kbd> several times.
 
-For more details, please refer to the documentation: https://www.home-assistant.io/integrations/telegram_bot/#configuration
+For more details, please refer to the [documentation](https://www.home-assistant.io/integrations/telegram_bot/#configuration).
 
 
 ### Important note
@@ -155,7 +155,7 @@ Before adopting a [PR](https://github.com/home-assistant/core/pull/162690/) to c
 1. Go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd> > <kbd>Telegram bot</kbd>.
 2. Click on the <kbd>...</kbd> icon on the top right corner of the page and then Enable debug logging.\
 This is used for verifying later.
-3. Click on the <kbd>...</kbd> icon beside your bot and then Copy entry ID.
+3. Click on the <kbd>...</kbd> icon beside your bot and then <kbd>Copy entry ID</kbd>.
 4. Open the `config/.storage/core.config_entries` file using any editor in SSH or VSCode.
 5. Search for the `entry_id` using the value copied in step `3`.
 6. You should see a JSON fields named `trusted_networks` and `url`.\
@@ -172,6 +172,59 @@ You should see a entry: `Registering webhook URL: http://homeassistant:8123`.\
 This should match what you have updated in step `6`.\
 You can also check the webhook URL on the Telegram Bot API statistics page.
 9. Disable debug logging.
+
+## ESPHome send message example
+
+```yaml
+substitutions:
+  TELEGRAM_API_URL: http://YOUR-HA:8081
+  TELEGRAM_BOT_TOKEN: !secret telegram_bot_token
+  api_key: !secret api_key
+  ota_password: !secret ota_password
+  chat_id: xxxxxxxxx
+
+http_request:
+  useragent: esphome/device
+  timeout: 5s
+
+button:
+  - platform: template
+    name: Send Telegram message
+    on_press:
+      - http_request.post:
+          url: "${TELEGRAM_API_URL}/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+          headers:
+            Content-Type: application/json
+          json:
+            chat_id: ${chat_id}
+            text: Hello from my ESP Device via local Telegram Bot API server!
+          verify_ssl: false
+```
+
+Replace *YOUR-HA* with your Home Assistant hostname or IP address.
+
+## Curl send message example
+
+```bash
+#!/bin/bash
+
+# Replace *YOUR-HA* with your Home Assistant hostname or IP address.
+API_URL="http://YOUR-HA:8081"
+
+# Replace with your actual API Token and Chat ID
+API_TOKEN="<your_api_token>"
+CHAT_ID="<your_chat_id>"
+
+# Define the message you want to send
+MESSAGE="Hello from my script via local Telegram Bot API server!"
+
+# The curl command to send the message
+curl -s -X POST "$API_URL/bot$API_TOKEN/sendMessage" \
+    -d chat_id=$CHAT_ID \
+    -d text="$MESSAGE" > /dev/null
+
+echo "Message sent!"
+```
 
 ## FAQs
 
@@ -247,7 +300,7 @@ You can disable password checking by the pwned service using the command:
 
 And check if this feature is disabled:
 
-```
+```bash
 ha sec info
 ```
 Result should be: `pwned: false`
