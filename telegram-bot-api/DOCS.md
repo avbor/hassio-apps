@@ -145,7 +145,7 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 For more details, please refer to the [documentation](https://www.home-assistant.io/integrations/telegram_bot/#configuration).
 
 
-### Important note
+### Webhook important note
 If you use **[webhooks](https://www.home-assistant.io/integrations/telegram_bot/#webhooks)** platform, you should change the webhook `URL` to `http://homeassistant:8123`\
 This will ensure direct network interaction between the Telegram Bot API and Home Assistant Core containers.
 
