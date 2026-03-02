@@ -177,10 +177,10 @@ You can also check the webhook URL on the Telegram Bot API statistics page.
 
 ```yaml
 substitutions:
+  # Replace *YOUR-HA* with your Home Assistant hostname or IP address.
   TELEGRAM_API_URL: http://YOUR-HA:8081
   TELEGRAM_BOT_TOKEN: !secret telegram_bot_token
   api_key: !secret api_key
-  ota_password: !secret ota_password
   chat_id: xxxxxxxxx
 
 http_request:
@@ -200,8 +200,6 @@ button:
             text: Hello from my ESP Device via local Telegram Bot API server!
           verify_ssl: false
 ```
-
-Replace *YOUR-HA* with your Home Assistant hostname or IP address.
 
 ## Curl send message example
 
