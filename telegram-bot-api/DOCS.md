@@ -144,6 +144,35 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 
 For more details, please refer to the documentation: https://www.home-assistant.io/integrations/telegram_bot/#configuration
 
+
+### Important note
+If you use **[webhooks](https://www.home-assistant.io/integrations/telegram_bot/#webhooks)** platform, you should change the webhook `URL` to `http://homeassistant:8123`\
+This will ensure direct network interaction between the Telegram Bot API and Home Assistant Core containers.
+
+Currently (HA <= Core 2026.2.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol.\
+Before adopting a [PR](https://github.com/home-assistant/core/pull/162690/) to correct this behavior, this can be done in the following way:
+
+1. Go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd> > <kbd>Telegram bot</kbd>.
+2. Click on the <kbd>...</kbd> icon on the top right corner of the page and then Enable debug logging.\
+This is used for verifying later.
+3. Click on the <kbd>...</kbd> icon beside your bot and then Copy entry ID.
+4. Open the `config/.storage/core.config_entries` file using any editor in SSH or VSCode.
+5. Search for the `entry_id` using the value copied in step `3`.
+6. You should see a JSON fields named `trusted_networks` and `url`.\
+Update the values ​​as follows:
+```
+"trusted_networks":["149.154.160.0/20","91.108.4.0/22","172.30.33.2"]
+```
+```
+"url":"http://homeassistant:8123"
+```
+7. Restart HA (simply reloading the integration won't work).
+8. Check the System logs.\
+You should see a entry: `Registering webhook URL: http://homeassistant:8123`.\
+This should match what you have updated in step `6`.\
+You can also check the webhook URL on the Telegram Bot API statistics page.
+9. Disable debug logging.
+
 ## FAQs
 
 ### Why would I want to use this over the official server `https://api.telegram.org`?
