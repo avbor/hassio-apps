@@ -161,7 +161,7 @@ This is used for verifying later.
 6. You should see a JSON fields named `trusted_networks` and `url`.\
 Update the values ​​as follows:
 ```
-"trusted_networks":["149.154.160.0/20","91.108.4.0/22","172.30.33.2"]
+"trusted_networks":["149.154.160.0/20","91.108.4.0/22","172.30.33.0/24"]
 ```
 ```
 "url":"http://homeassistant:8123"
