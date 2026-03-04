@@ -19,7 +19,7 @@ Or, simply click the button below to add it automatically:
 
 ## Add-ons provided by this repository
 
-### &#10003; [Telegram Bot API](https://github.com/tdlib/telegram-bot-api/) Server
+### &#10003; Local [Telegram Bot API](https://github.com/tdlib/telegram-bot-api/) Server
 
 ![GitHub Release][telegram-bot-api-releases-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports aarch64 Architecture][aarch64-shield]
 
