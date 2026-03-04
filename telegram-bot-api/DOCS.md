@@ -158,7 +158,7 @@ For more details, please refer to the [documentation](https://www.home-assistant
 If you use **[webhooks](https://www.home-assistant.io/integrations/telegram_bot/#webhooks)** platform, you should change the webhook `URL` to `http://homeassistant:8123`\
 This will ensure direct network interaction between the Telegram Bot API and Home Assistant Core containers.
 
-Currently (HA Core <=  2026.2.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol via the web interface.\
+Currently (HA Core <=  2026.3.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol via the web interface.\
 Before adopting a [PR](https://github.com/home-assistant/core/pull/162690/) to correct this behavior, this can be done in the following way:
 
 1. Go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd> > <kbd>Telegram bot</kbd>.
