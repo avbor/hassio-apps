@@ -293,7 +293,7 @@ Perhaps some of the following steps will help you, try them:
 
 ...and so on.
 
-These errors relate to the [Have I Been Pwned (HIBP)](https://haveibeenpwned.com/Passwords) service, which is used by HA to check the passwords you use in apps for leaks.\
+These errors relate to the [Have I Been Pwned (HIBP)](https://haveibeenpwned.com/Passwords) service, which is used by HA to check the passwords you use in apps for leaks.
 
 The API calls are made to <https://api.pwnedpasswords.com>\
 If you're having trouble accessing this resource, you may receive these errors.
