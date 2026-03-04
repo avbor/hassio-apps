@@ -10,6 +10,8 @@ Thanks, guys!
 
 This app allows you to run your own [Telegram Bot API server](https://github.com/tdlib/telegram-bot-api) instead of using the official server `https://api.telegram.org`.
 
+![Scheme](./images/scheme.svg)
+
 If you switch to a local Bot API server, your bot will be able to:
 
 - Download files without a size limit.

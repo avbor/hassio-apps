@@ -1,6 +1,8 @@
 # Home Assistant App: Telegram Bot API
 
-Run your own instance of the Telegram Bot API server.
+Run your own instance of the Telegram Bot API server with full proxy support.
+
+![Scheme](./images/scheme.svg)
 
 Overview:
 1. [Create Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain `api_id` and `api_hash`.
