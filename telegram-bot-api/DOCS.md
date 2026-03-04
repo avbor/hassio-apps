@@ -158,7 +158,7 @@ For more details, please refer to the [documentation](https://www.home-assistant
 If you use **[webhooks](https://www.home-assistant.io/integrations/telegram_bot/#webhooks)** platform, you should change the webhook `URL` to `http://homeassistant:8123`\
 This will ensure direct network interaction between the Telegram Bot API and Home Assistant Core containers.
 
-Currently (HA Core <=  2026.2.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol.\
+Currently (HA Core <=  2026.2.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol via the web interface.\
 Before adopting a [PR](https://github.com/home-assistant/core/pull/162690/) to correct this behavior, this can be done in the following way:
 
 1. Go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd> > <kbd>Telegram bot</kbd>.
@@ -179,7 +179,7 @@ Update the values ​​as follows:
 8. Check the System logs.\
 You should see a entry: `Registering webhook URL: http://homeassistant:8123`.\
 This should match what you have updated in step `6`.\
-You can also check the webhook URL on the Telegram Bot API statistics page.
+You can also check the registered webhook URL on the Telegram Bot API statistics page.
 9. Disable debug logging.
 
 ## ESPHome send message example
@@ -253,7 +253,7 @@ You continue to use all your automations, scripts, and the rest of the things wi
 ### Creating an app on my.telegram.org/apps: `ERROR`
 
 This is a fairly common problem, and everyone has their own solution.\
-Possible solutions include:
+Perhaps some of the following steps will help you, try them:
 
 #### Data Formatting
 - **App Title and Short Name**: Avoid using the word "Telegram," symbols like @ or #, spaces, or hyphens.\
@@ -263,7 +263,8 @@ Possible solutions include:
 - **Platform Selection**: Try changing the platform (e.g., select Android or Desktop instead of "Other").
 
 #### Network and Environment
-- **Disable VPN/Proxy**: Telegram often blocks API registration from IP addresses it deems suspicious or public.
+- **Disable VPN/Proxy**: Telegram often blocks API registration from IP addresses it deems suspicious or public.\
+*And vice versa, enabling one may also help.*
 - **Incognito Mode**: Use your browser's private mode to rule out issues with old cache, cookies, \
   or extensions (especially ad-blockers).
 - **Change Network**: Switch from Wi-Fi to mobile data (or vice versa) to get a fresh IP address.
@@ -293,6 +294,8 @@ Possible solutions include:
 ...and so on.
 
 These errors relate to the [Have I Been Pwned (HIBP)](https://haveibeenpwned.com/Passwords) service, which is used by HA to check the passwords you use in apps for leaks.\
+
+The API calls are made to <https://api.pwnedpasswords.com>\
 If you're having trouble accessing this resource, you may receive these errors.
 
 The workaround is to disable password checking using apps:\
