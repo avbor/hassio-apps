@@ -4,7 +4,7 @@
 
 Run your own instance of the [Telegram Bot API](https://core.telegram.org/bots/api#using-a-local-bot-api-server) server with full proxy support ([MTProxy](https://core.telegram.org/proxy), SOCKS5 or HTTP).
 
-![Scheme](./images/scheme.svg)
+![Scheme](https://raw.githubusercontent.com/avbor/hassio-apps/refs/heads/main/telegram-bot-api/images/scheme.svg)
 
 ### Core benefits:
 
@@ -32,6 +32,8 @@ Note: The app has read-only access to your `media` folder.
 Before you begin, you will need to [create your Telegram application](https://core.telegram.org/api/obtaining_api_id) to obtain your `api_id` and `api_hash` which will be required for configuration later.\
 If you can't create an app due to an error, refer to the [Troubleshooting](#creating-an-app-on-mytelegramorgapps-error) section.
 
+ For the best experience and complete feature set, please use Home Assistant version `2026.4` or later.
+
 ## Installation
 
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Apps</kbd> > <kbd>App store</kbd>.
@@ -50,6 +52,8 @@ Refer to the [Pre-requisites](#pre-requisites) section if you have not created y
 
 Configure the options below and then click <kbd>Save</kbd>.\
 Click <kbd>Restart</kbd> if prompted.
+
+The **minimum required** settings are `api_id` and `api_hash`.
 
 *This configuration requires Home Assistant `2026.2` or later:*\
 After you have completed your configuration, continue with the Telegram Bot Integration Set-up to configure your Home Assistant Telegram Bot to connect to the local API instead of the official Telegram API server (https://api.telegram.org).
@@ -118,9 +122,9 @@ log_level: 1
 stat_enabled: true
 proxy:
   prx_type: mtproto
-  prx_server: my.mtproxy.com
+  prx_server: my_proxy_url
   prx_port: 443
-  prx_secret: ee4b67f8e98220d0ef3f388946b119d8dc73696d706c652d68612e4264
+  prx_secret: ee4b...64
 ```
 
 ## Telegram Bot API Endpoint
@@ -146,7 +150,7 @@ Also, this configuration **requires** Home Assistant `2026.2` or later.
 To configure your Telegram bot to use your own Telegram bot API server instance (this app), do the following:
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd>.
 2. Click on <kbd>Telegram bot</kbd>
-3. Click on <kbd>...</kbd> icon of the Telegram bot and press <kbd>Reconfigure</kbd>.
+3. Click on the <kbd>...</kbd> icon of the Telegram bot and press <kbd>Reconfigure</kbd>.
 4. Open <kbd>Advanced settings</kbd> section and change <kbd>API endpoint</kbd> to: \
 `http://96e39688-telegram-bot-api:8081`
 5. Complete the reconfiguration by pressing <kbd>Submit</kbd> several times.
@@ -158,8 +162,18 @@ For more details, please refer to the [documentation](https://www.home-assistant
 If you use **[webhooks](https://www.home-assistant.io/integrations/telegram_bot/#webhooks)** platform, you should change the webhook `URL` to `http://homeassistant:8123`\
 This will ensure direct network interaction between the Telegram Bot API and Home Assistant Core containers.
 
-Currently (HA Core <=  2026.3.*) the integration does not allow you to specify a webhook URL using the `HTTP` protocol via the web interface.\
-Before adopting a [PR](https://github.com/home-assistant/core/pull/162690/) to correct this behavior, this can be done in the following way:
+In HA Core >=  **2026.4.*** do the following:
+1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd>.
+2. Click on <kbd>Telegram bot</kbd>
+3. Click on the <kbd>...</kbd> icon of the Telegram bot and press <kbd>Reconfigure</kbd>.
+4. Press <kbd>Submit</kbd> button
+5. In the <kbd>URL</kbd> field, enter `http://homeassistant:8123`.
+6. In the <kbd>Trusted networks</kbd> field, add `172.30.33.0/24`.
+7. Complete the reconfiguration by pressing <kbd>Submit</kbd>.
+8. Restart HA (simply reloading the integration won't work).
+
+In HA Core <=  **2026.3.*** the integration does not allow you to specify a webhook URL using the `HTTP` protocol via the web interface.\
+To correct this behavior, this can be done in the following way:
 
 1. Go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd> > <kbd>Telegram bot</kbd>.
 2. Click on the <kbd>...</kbd> icon on the top right corner of the page and then Enable debug logging.\
