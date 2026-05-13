@@ -1,5 +1,65 @@
 # Changelog
 
+## 10.0
+
+Highlighted changes for Telegram Bot API:
+
+- Update TDLib to 1.8.64.
+
+Changelog for 10.0 API version is based on release notes at: <https://core.telegram.org/bots/api>:
+
+**Guest Mode**
+
+- Introduced support for guest mode, allowing bots to receive certain messages and issue replies within chats they are not a member of.
+- Added the field supports_guest_queries to the class User.
+- Added the fields guest_bot_caller_user and guest_bot_caller_chat to the class Message.
+- Added the field guest_query_id to the class Message.
+- Added the field guest_message to the class Update.
+- Added the class SentGuestMessage and the method answerGuestQuery.
+
+**Chat Management**
+
+- Added the field can_react_to_messages to the classes ChatMemberRestricted and ChatPermissions.
+- Added the parameter return_bots to the method getChatAdministrators.
+- Added the method deleteAllMessageReactions.
+- Added the method deleteMessageReaction.
+- Added the ability to see certain messages sent by other bots in groups.
+
+**Polls**
+
+- Added the classes InputMediaSticker, InputMediaLocation, and InputMediaVenue.
+- Added the class PollMedia, representing a media in a poll.
+- Added the field media to the class Poll, allowing bots to see media in polls.
+- Added the field explanation_media to the class Poll, allowing bots to see media in quiz explanations.
+- Added the field media to the class PollOption, allowing bots to see media in poll options.
+- Added the class InputPollMedia and the parameters media and explanation_media to the method sendPoll, allowing bots to add media to polls.
+- Added the class InputPollOptionMedia and the field media to the class InputPollOption, allowing bots to add media to poll options.
+- Added the field members_only to the class Poll.
+- Added the parameter members_only to the method sendPoll.
+- Added the field country_codes to the class Poll.
+- Added the parameter country_codes to the method sendPoll.
+- Decreased the minimum number of poll options from 2 to 1.
+
+**Live photos**
+
+- Added the class LivePhoto, which represents a photo with a short video.
+- Added the class InputMediaLivePhoto.
+- Added the field live_photo to the classes Message and ExternalReplyInfo.
+- Added the method sendLivePhoto, allowing bots to send live photos.
+- Added the class PaidMediaLivePhoto, which describes a paid media with a live photo.
+- Added the class InputPaidMediaLivePhoto, allowing bots to send live photos as paid media.
+- Allowed to use live photos in sendMediaGroup and editMessageMedia,
+
+**General**
+
+- Allowed Business Bots to manage user accounts without a Telegram Premium subscription.
+- Added the ability to send messages to other bots via username if both bots enabled bot-to-bot communication.
+- Added the ability to reply to other bots from a business bot if the business bot enabled bot-to-bot communication.
+- Allowed bots to pass an empty text in the method sendMessageDraft.
+- Added the class BotAccessSettings and the method getManagedBotAccessSettings.
+- Added the method setManagedBotAccessSettings.
+- Added the method getUserPersonalChatMessages.
+
 ## 9.6
 
 Highlighted changes for Telegram Bot API:
