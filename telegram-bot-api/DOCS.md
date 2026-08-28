@@ -151,7 +151,7 @@ To configure your Telegram bot to use your own Telegram bot API server instance 
 1. On your Home Assistant, go to <kbd>Settings</kbd> > <kbd>Devices & services</kbd>.
 2. Click on <kbd>Telegram bot</kbd>
 3. Click on the <kbd>...</kbd> icon of the Telegram bot and press <kbd>Reconfigure</kbd>.
-4. Open <kbd>Advanced settings</kbd> section and change <kbd>API endpoint</kbd> to: \
+4. Open <kbd>Additional settings</kbd> section and change <kbd>API endpoint</kbd> to: \
 `http://96e39688-telegram-bot-api:8081`
 5. Complete the reconfiguration by pressing <kbd>Submit</kbd> several times.
 
